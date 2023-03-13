@@ -252,6 +252,10 @@ def get_table_changes(
         if v.parent_table != before.parent_table:
             statements += v.attach_detach_statements(before)
 
+        # Check for changed owner
+        if v.owner != before.owner:
+            statements += v.alter_table_statement(f"owner to {v.owner}")
+
     modified_order = list(modified.keys())
 
     modified_order.sort(key=lambda x: modified[x].is_inheritance_child_table)
