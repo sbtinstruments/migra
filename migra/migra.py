@@ -84,8 +84,12 @@ class Migration(object):
         if drops:
             self.add(self.changes.extensions(drops_only=True))
 
-    def add_all_changes(self, privileges=False):
+    def add_all_changes(self, privileges=False, roles=False):
         self.add(self.changes.schemas(creations_only=True))
+
+        if roles:
+            self.add(self.changes.roles(drops_only=True))
+            self.add(self.changes.roles(creations_only=True))
 
         self.add(self.changes.extensions(creations_only=True, modifications=False))
         self.add(self.changes.extensions(modifications_only=True, modifications=True))

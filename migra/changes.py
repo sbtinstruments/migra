@@ -10,6 +10,7 @@ from .util import differences
 
 THINGS = [
     "schemas",
+    "roles",
     "enums",
     "sequences",
     "constraints",
@@ -654,6 +655,15 @@ class Changes(object):
             self.i_from.sequences,
             self.i_target.sequences,
             modifications=False,
+        )
+
+    @property
+    def roles(self):
+        return partial(
+            statements_for_changes,
+            self.i_from.roles,
+            self.i_target.roles,
+            modifications=False
         )
 
     def __getattr__(self, name):
