@@ -254,7 +254,11 @@ def get_table_changes(
 
         # Check for changed owner
         if v.owner != before.owner:
-            statements += v.alter_table_statement(f"owner to {v.owner}")
+            statements += [v.alter_table_statement(f"owner to {v.owner}")]
+
+        # Check for changed comment
+        if v.comment != before.comment:
+            statements += [v.set_comment_on_table_statement(v.comment)]
 
     modified_order = list(modified.keys())
 
