@@ -88,8 +88,7 @@ class Migration(object):
         self.add(self.changes.schemas(creations_only=True))
 
         if roles:
-            self.add(self.changes.roles(drops_only=True))
-            self.add(self.changes.roles(creations_only=True))
+            self.add(self.changes.roles(modifications_as_alters=True))
 
         self.add(self.changes.extensions(creations_only=True, modifications=False))
         self.add(self.changes.extensions(modifications_only=True, modifications=True))

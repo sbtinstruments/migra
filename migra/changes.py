@@ -670,8 +670,7 @@ class Changes(object):
         return partial(
             statements_for_changes,
             self.i_from.roles,
-            self.i_target.roles,
-            modifications=False
+            self.i_target.roles
         )
 
     def __getattr__(self, name):
