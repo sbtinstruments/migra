@@ -90,6 +90,8 @@ class Migration(object):
         if roles:
             self.add(self.changes.roles(modifications_as_alters=True))
 
+        self.add(self.changes.types(modifications=True))
+
         self.add(self.changes.extensions(creations_only=True, modifications=False))
         self.add(self.changes.extensions(modifications_only=True, modifications=True))
         self.add(self.changes.collations(creations_only=True))

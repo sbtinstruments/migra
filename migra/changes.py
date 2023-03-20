@@ -22,6 +22,7 @@ THINGS = [
     "collations",
     "rlspolicies",
     "triggers",
+    "types",
 ]
 PK = "PRIMARY KEY"
 
@@ -671,6 +672,14 @@ class Changes(object):
             statements_for_changes,
             self.i_from.roles,
             self.i_target.roles
+        )
+
+    @property
+    def types(self):
+        return partial(
+            statements_for_changes,
+            self.i_from.types,
+            self.i_target.types
         )
 
     def __getattr__(self, name):
